@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/setting_bg">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/personColor">
+
+        <com.start.myfreetime.view.WaveView
+            android:id="@+id/wave_view"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_gravity="bottom" />
+
+        <com.start.myfreetime.view.CircleImageView
+            android:id="@+id/image"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="bottom|center"
+            android:background="@drawable/me"
+            app:civ_border_width="2dp"
+            app:civ_border_color="@color/white"/>
+    </FrameLayout>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:padding="12dp"
+        app:cardElevation="0dp"
+        android:layout_marginTop="24dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/read_mode"
+            android:padding="8dp"
+            android:drawablePadding="8dp"
+            android:drawableLeft="@drawable/ic_photo_black_24dp"
+            android:gravity="center_vertical"/>
+
+         <com.suke.widget.SwitchButton
+            android:id="@+id/sw_nopic_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:sb_checked_color="@color/personColor"
+            android:layout_gravity="end|center"
+             app:sb_show_indicator="false"
+            />
+
+    </android.support.v7.widget.CardView>
+<View
+    android:layout_width="match_parent"
+    android:layout_height="0.2dp"
+    android:background="@color/lineColor"/>
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:padding="12dp"
+        app:cardElevation="0dp"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:id="@+id/tv_clear_cache"
+            android:text="@string/clear_cache"
+            android:padding="8dp"
+            android:drawablePadding="8dp"
+            android:drawableLeft="@drawable/ic_cached_black_24dp"
+            android:focusableInTouchMode="false"
+            android:gravity="center_vertical"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_cache_size"
+            android:gravity="center"
+
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="106dp"
+
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_chevron_right_black_24dp"
+            android:layout_gravity="end|center"/>
+    </android.support.v7.widget.CardView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.2dp"
+        android:background="@color/lineColor"/>
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:padding="12dp"
+        app:cardElevation="0dp"
+       >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/read_note"
+            android:padding="8dp"
+            android:drawableLeft="@drawable/ic_event_note_black_24dp"
+            android:id="@+id/tv_read_note"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_chevron_right_black_24dp"
+            android:layout_gravity="end|center"/>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:padding="12dp"
+        app:cardElevation="0dp"
+        android:layout_marginTop="12dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/tv_about"
+            android:padding="8dp"
+            android:id="@+id/tv_about_me"
+            android:drawablePadding="8dp"
+            android:drawableLeft="@drawable/ic_info_outline_black_24dp"
+            android:gravity="center_vertical"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_chevron_right_black_24dp"
+            android:layout_gravity="end|center"/>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#119ad9</color>
+    <color name="colorPrimaryDark">#0865bc</color>
+    <color name="colorAccent">#ffffff</color>
+
+    <color name="textColorPrimary">#616161</color>
+
+    <color name="lineColor">#d6d4d4</color>
+
+    <color name="setting_bg">#f5f3f3</color>
+
+    <color name="newsColor">#029a9c</color>
+    <color name="movieColor">#2e2b2b</color>
+    <color name="remarkColor">#f17db5</color>
+    <color name="personColor">#f7d54f</color>
+
+    <color name="launch_bg">#70000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="viewBackground">@android:color/white</color>
+</resources>

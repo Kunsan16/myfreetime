@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.start.myfreetime">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+
+    <application
+        android:name=".app.MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/icon"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+
+        android:theme="@style/AppTheme">
+        <meta-data
+
+            android:name="UMENG_APPKEY"
+            tools:replace="android:value"
+            android:value="590bf8d0310c936d7b00154b">
+        </meta-data>
+        <meta-data
+
+            android:name="UMENG_MESSAGE_SECRET"
+            tools:replace="android:value"
+            android:value="f1413d5ba82b61105a0da77bd57351d9">
+        </meta-data>
+        <meta-data
+          android:name="com.start.myfreetime.glide.GlideConfiguration"
+                  android:value="GlideModule" />
+        <activity
+            android:name="com.start.myfreetime.MainActivity"
+            android:label="@string/app_name"
+
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+       <activity android:name="com.start.myfreetime.LauncherActivity"
+           >
+           <intent-filter>
+               <action android:name="android.intent.action.MAIN" />
+
+               <category android:name="android.intent.category.LAUNCHER" />
+           </intent-filter>
+       </activity>
+        <activity android:name="com.start.myfreetime.DetailActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait"/>
+
+        <service android:name=".service.CacheService"/>
+
+        <activity android:name=".wxapi.WXEntryActivity"
+            android:exported="true"/>
+    </application>
+
+</manifest>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_ele_search"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+   android:orientation="vertical">
+
+    <FrameLayout
+        android:background="@color/movieColor"
+        android:id="@+id/frame_bg"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="126dp">
+        <ImageView
+            android:id="@+id/iv_arrow"
+            android:layout_gravity="center|left"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+        <EditText
+            android:id="@+id/tv_search_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/ele_search_bg"
+            android:gravity="left"
+            android:hint="请输入要搜索的影片名"
+            android:drawableStart="@drawable/ic_search_black_24dp"
+            android:padding="10dp" />
+
+
+
+        <TextView
+            android:layout_marginRight="5dp"
+            android:id="@+id/tv_search"
+            android:textColor="#fff"
+            android:layout_gravity="center|right"
+            android:text="搜索"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </FrameLayout>
+    <android.support.v4.widget.ContentLoadingProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:id="@+id/content_progress"/>
+    <com.jude.easyrecyclerview.EasyRecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:recyclerClipToPadding="true"
+        android:background="@color/white"
+        app:scrollbarStyle="insideOverlay"
+        app:scrollbars="none"
+        app:layout_empty="@layout/view_empty"
+        app:layout_progress="@layout/view_progress"
+        app:layout_error="@layout/view_error"/>
+</LinearLayout>
+

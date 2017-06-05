@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/moview_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/setting_bg"
+        android:layout_weight="1">
+
+        <com.jude.easyrecyclerview.EasyRecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:recyclerClipToPadding="false"
+        app:recyclerPaddingTop="126dp"
+
+        app:scrollbarStyle="insideOverlay"
+        app:scrollbars="none"
+        app:layout_empty="@layout/view_empty"
+        app:layout_progress="@layout/view_progress"
+        app:layout_error="@layout/view_error"/>
+
+    <include layout="@layout/search_layout"/>
+
+    </FrameLayout>

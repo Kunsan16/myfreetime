@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <tab
+        id="@+id/bm1"
+        icon="@drawable/ic_news"
+        barColorWhenSelected="#00a2ed"
+        inActiveColor="#ffffff"
+        activeColor="#ffffff"
+        title="知乎"/>
+
+    <tab
+        id="@+id/bm2"
+        icon="@drawable/ic_movies"
+        barColorWhenSelected="#101010"
+        inActiveColor="#ffffff"
+        activeColor="#ffffff"
+        title="电影"/>
+    <tab
+        id="@+id/bm3"
+        icon="@drawable/ic_collect"
+        barColorWhenSelected="#f17db5"
+        inActiveColor="#FFFFFF"
+        activeColor="#FFFFFF"
+        title="收藏"/>
+    <tab
+        id="@+id/bm4"
+        icon="@drawable/ic_person"
+        barColorWhenSelected="#f7d54f"
+        inActiveColor="#FFFFFF"
+        activeColor="#FFFFFF"
+        title="个人"/>
+</tabs>
