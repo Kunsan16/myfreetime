@@ -15,6 +15,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,6 +33,7 @@ import com.start.myfreetime.presenter.PersonSettingPresenterImp;
 import com.start.myfreetime.presenter.RemarkPresenterImp;
 import com.start.myfreetime.service.CacheService;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static com.start.myfreetime.app.MyApplication.WRITE_EXTERNAL_STORAGE_REQUEST_CODE;
@@ -90,9 +92,23 @@ public class MainActivity extends BaseActivity
                     WRITE_EXTERNAL_STORAGE_REQUEST_CODE);
         }
         initBottomBar();
+        Log.i("========2======", Arrays.toString(hexStr2Bytes("343038423431313732384435434636373833453035373343383")));
     }
 
-
+    public static byte[] hexStr2Bytes(String src)
+    {
+        int m=0,n=0;
+        int l=src.length()/2;
+        System.out.println(l);
+        byte[] ret = new byte[l];
+        for (int i = 0; i < l; i++)
+        {
+            m=i*2+1;
+            n=m+1;
+            ret[i] = Byte.decode("0x" + src.substring(i*2, m) + src.substring(m,n));
+        }
+        return ret;
+    }
 
     @Override
     protected int attachLayoutRes() {
