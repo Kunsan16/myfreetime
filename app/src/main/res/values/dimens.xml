@@ -8,6 +8,6 @@
     <dimen name="fab_margin">16dp</dimen>
 
 
-    <dimen name="app_bar_height">240dp</dimen>
+    <dimen name="app_bar_height">280dp</dimen>
     <dimen name="news_ads_height">220dp</dimen>
 </resources>

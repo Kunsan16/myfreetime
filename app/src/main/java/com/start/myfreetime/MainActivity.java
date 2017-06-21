@@ -68,7 +68,7 @@ public class MainActivity extends BaseActivity
         setSupportActionBar(toolbar);
 
 
-         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
@@ -77,10 +77,8 @@ public class MainActivity extends BaseActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_camera);
-        zhihuFragment=NewsFragment.newInstance();
-        movieFragment=MovieFragment.newInstance();
-        collectFragement=CollectFragement.newInstance();
-        personFragement=PersonFragement.newInstance();
+        initFragment();
+
        // addFragment(R.id.fragment_container,fragment,"zhihu");
 
          presenterImp = new NewsPresenterImp(this, zhihuFragment);
@@ -92,23 +90,23 @@ public class MainActivity extends BaseActivity
                     WRITE_EXTERNAL_STORAGE_REQUEST_CODE);
         }
         initBottomBar();
-        Log.i("========2======", Arrays.toString(hexStr2Bytes("343038423431313732384435434636373833453035373343383")));
+          }
+
+    private void initFragment() {
+        if (zhihuFragment==null){
+            zhihuFragment=NewsFragment.newInstance();
+        }
+        if (movieFragment==null){
+            movieFragment=MovieFragment.newInstance();
+        }
+        if (collectFragement==null){
+            collectFragement=CollectFragement.newInstance();
+        }
+        if (personFragement==null){
+            personFragement=PersonFragement.newInstance();
+        }
     }
 
-    public static byte[] hexStr2Bytes(String src)
-    {
-        int m=0,n=0;
-        int l=src.length()/2;
-        System.out.println(l);
-        byte[] ret = new byte[l];
-        for (int i = 0; i < l; i++)
-        {
-            m=i*2+1;
-            n=m+1;
-            ret[i] = Byte.decode("0x" + src.substring(i*2, m) + src.substring(m,n));
-        }
-        return ret;
-    }
 
     @Override
     protected int attachLayoutRes() {

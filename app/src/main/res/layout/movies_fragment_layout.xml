@@ -11,8 +11,7 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:recyclerClipToPadding="false"
-        app:recyclerPaddingTop="126dp"
+
 
         app:scrollbarStyle="insideOverlay"
         app:scrollbars="none"
@@ -20,6 +19,6 @@
         app:layout_progress="@layout/view_progress"
         app:layout_error="@layout/view_error"/>
 
-    <include layout="@layout/search_layout"/>
+
 
     </FrameLayout>

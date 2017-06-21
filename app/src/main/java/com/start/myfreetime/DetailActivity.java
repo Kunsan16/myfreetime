@@ -1,13 +1,18 @@
 package com.start.myfreetime;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
+import com.jaeger.library.StatusBarUtil;
 import com.orhanobut.logger.Logger;
 import com.start.myfreetime.app.Constant;
 import com.start.myfreetime.base.BaseActivity;
+import com.start.myfreetime.fragment.MovieCommentFragment;
+import com.start.myfreetime.presenter.MovieMainDetailPresenterImp;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
@@ -27,7 +32,7 @@ public class DetailActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         replaceFragment();
-
+        StatusBarUtil.setColor(this, Color.TRANSPARENT);
     }
 
 
@@ -40,6 +45,7 @@ public class DetailActivity extends BaseActivity {
     private void replaceFragment() {
         Intent intent=getIntent();
         String ret=intent.getStringExtra("zhihu");
+
         if ("zhihu".equals(ret)){
             zhihuFragment = new DetailFragment();
             getSupportFragmentManager().beginTransaction()
@@ -55,10 +61,12 @@ public class DetailActivity extends BaseActivity {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.container, movieFragment)
                     .commit();
-            DetailPresenterImp presenterImp=new DetailPresenterImp(this,movieFragment);
+
+            MovieMainDetailPresenterImp presenterImp=new MovieMainDetailPresenterImp(this,movieFragment);
+            MovieMainDetailPresenterImp comment=new MovieMainDetailPresenterImp(this,new MovieCommentFragment());
             presenterImp.setId(intent.getIntExtra("id",0));
-            presenterImp.setTitle(intent.getStringExtra("title"));
-           // presenterImp.setCoverUrl(intent.getStringExtra("coverUrl"));
+            comment.setId(intent.getIntExtra("id",0));
+            Log.d("set的ID---- ",intent.getIntExtra("id",0)+"");
         }
     }
 

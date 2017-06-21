@@ -63,10 +63,10 @@ public class MovieFragment extends BaseFragment<MoviePresenter> implements Movie
     MovieAdapter adapter;
     @BindView(R.id.recyclerView)
     EasyRecyclerView recyclerView;
-    @BindView(R.id.tv_search_bg)
-    TextView mSearchBGTxt;
-    @BindView(R.id.search_frame)
-    FrameLayout frameLayout;
+//    @BindView(R.id.tv_search_bg)
+//    TextView mSearchBGTxt;
+//    @BindView(R.id.search_frame)
+//    FrameLayout frameLayout;
     ArrayList<MovieBean.DataBean.MoviesBean> movieList=new ArrayList<>();
 
     @Nullable
@@ -98,9 +98,9 @@ public class MovieFragment extends BaseFragment<MoviePresenter> implements Movie
         }else {
             Log.i("hidden no",hidden+"");
             MainActivity activity=(MainActivity)getActivity();
-            // activity.initToolbar("看电影",getResources().getColor(R.color.collectColor));
+             activity.initToolbar("看电影",getResources().getColor(R.color.movieColor));
             StatusBarUtil.setColor(getActivity(),getResources().getColor(R.color.movieColor));
-            activity.setToolbarVisible(true);
+            activity.setToolbarVisible(false);
         }
 
     }
@@ -114,36 +114,36 @@ public class MovieFragment extends BaseFragment<MoviePresenter> implements Movie
 
     }
 
-    @OnClick (R.id.tv_search_bg)
-    public void searchMovie(){
-
-
-        int location[] = new int[2];
-        mSearchBGTxt.getLocationOnScreen(location);
-        MovieCopyFragment fragment = new MovieCopyFragment();
-        Bundle bundle=new Bundle();
-        bundle.putInt("x",location[0]);
-        bundle.putInt("y",location[1]);
-        bundle.putSerializable("list",movieList);
-//        LocationParam.getInstance().setLoc_x(location[0]);
-//        LocationParam.getInstance().setLoc_y(location[1]);
-//        LocationParam.getInstance().setList(movieList);
-
-        fragment.setArguments(bundle);
-       // showFragment( R.id.fragment_container,this,fragment,"movie");
-//        getChildFragmentManager().beginTransaction()
+//    @OnClick (R.id.tv_search_bg)
+//    public void searchMovie(){
+//
+//
+//        int location[] = new int[2];
+//        mSearchBGTxt.getLocationOnScreen(location);
+//        MovieCopyFragment fragment = new MovieCopyFragment();
+//        Bundle bundle=new Bundle();
+//        bundle.putInt("x",location[0]);
+//        bundle.putInt("y",location[1]);
+//        bundle.putSerializable("list",movieList);
+////        LocationParam.getInstance().setLoc_x(location[0]);
+////        LocationParam.getInstance().setLoc_y(location[1]);
+////        LocationParam.getInstance().setList(movieList);
+//
+//        fragment.setArguments(bundle);
+//       // showFragment( R.id.fragment_container,this,fragment,"movie");
+////        getChildFragmentManager().beginTransaction()
+////                .add(R.id.moview_fragment_container,fragment)
+////
+////
+////                .addToBackStack(null)
+////                .commit();
+//           getChildFragmentManager()
+//        //getActivity().getSupportFragmentManager()
+//                .beginTransaction()
 //                .add(R.id.moview_fragment_container,fragment)
-//
-//
 //                .addToBackStack(null)
 //                .commit();
-           getChildFragmentManager()
-        //getActivity().getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.moview_fragment_container,fragment)
-                .addToBackStack(null)
-                .commit();
-    }
+//    }
 
     @Override
     public void showResults(final ArrayList<MovieBean.DataBean.MoviesBean> list) {
@@ -200,12 +200,12 @@ public class MovieFragment extends BaseFragment<MoviePresenter> implements Movie
     }
 
     private void showViews() {
-        frameLayout.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2));
+      //  frameLayout.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2));
 
 
     }
 
     private void hideViews() {
-        frameLayout.animate().translationY(-frameLayout.getHeight()).setInterpolator(new AccelerateInterpolator(2));
+        //frameLayout.animate().translationY(-frameLayout.getHeight()).setInterpolator(new AccelerateInterpolator(2));
     }
 }

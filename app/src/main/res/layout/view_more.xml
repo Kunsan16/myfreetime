@@ -4,13 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="48dp"
     android:gravity="center">
-    <ProgressBar
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:indeterminate="false"/>
-    <TextView
+    <android.support.v4.widget.ContentLoadingProgressBar
+        android:id="@+id/address_looking_up"
+        style="?android:attr/progressBarStyleInverse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="更多加载中……"/>
+        android:layout_gravity="center_horizontal"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="加载更多..."
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="8dp"
+        android:gravity="center_vertical"/>
 
 </LinearLayout>

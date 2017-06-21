@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -18,6 +19,9 @@ import com.start.myfreetime.presenter.LauncherPresenter;
 import com.start.myfreetime.presenter.LauncherPresenterImp;
 import com.start.myfreetime.view.LauncherView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 public class LauncherActivity extends Activity implements LauncherView {
 
@@ -25,12 +29,16 @@ public class LauncherActivity extends Activity implements LauncherView {
     private TextView tv_start;
     private LauncherPresenter presenter;
     private String url;
+    @BindView(R.id.start_skip_count_down)
+    TextView mCountDownTextView;
+    private MyCountDownTimer mCountDownTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_lancher);
+        ButterKnife.bind(this);
         iv_start= (ImageView) findViewById(R.id.iv_start);
         tv_start= (TextView) findViewById(R.id.tv_start);
       LauncherPresenterImp presenterImp=new LauncherPresenterImp(this,LauncherActivity.this,iv_start);
@@ -38,7 +46,10 @@ public class LauncherActivity extends Activity implements LauncherView {
         presenter.start();
 
         startAnimator(iv_start);
-
+        mCountDownTextView.setText("5s 跳过");
+        //创建倒计时类
+        mCountDownTimer = new MyCountDownTimer(5000, 1000);
+        mCountDownTimer.start();
     }
 
 
@@ -100,4 +111,40 @@ public class LauncherActivity extends Activity implements LauncherView {
             fadeAnim.start();
         }
     };
+
+    @Override
+    protected void onDestroy() {
+
+        if (mCountDownTimer != null) {
+            mCountDownTimer.cancel();
+        }
+        super.onDestroy();
+    }
+
+    class MyCountDownTimer extends CountDownTimer {
+        /**
+         * @param millisInFuture
+         *      表示以「 毫秒 」为单位倒计时的总数
+         *      例如 millisInFuture = 1000 表示1秒
+         *
+         * @param countDownInterval
+         *      表示 间隔 多少微秒 调用一次 onTick()
+         *      例如: countDownInterval = 1000 ; 表示每 1000 毫秒调用一次 onTick()
+         *
+         */
+
+        public MyCountDownTimer(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+        }
+
+
+        public void onFinish() {
+            mCountDownTextView.setText("0s 跳过");
+        }
+
+        public void onTick(long millisUntilFinished) {
+            mCountDownTextView.setText( millisUntilFinished / 1000 + "s 跳过");
+        }
+
+    }
 }

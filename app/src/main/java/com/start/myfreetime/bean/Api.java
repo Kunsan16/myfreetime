@@ -16,5 +16,8 @@ public class Api {
 
     public static final String MOVIE_DETAIL = "http://m.maoyan.com/movie/";
 
+    public static final String MOVIE_COMMENT = "http://m.maoyan.com/comments.json?movieid=";
+
+    public static final String MOVIE_CINEMAL="http://m.maoyan.com/cinemas.json";
 
 }

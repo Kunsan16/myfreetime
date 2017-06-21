@@ -115,7 +115,7 @@ public class PersonFragement extends BaseFragment<PersonSettingPresenter> implem
     public void initViews(View view) {
         cacheTv.setText("("+ GlideCatchUtil.getInstance().getCacheSize()+")");
         SharedPreferences sp = getActivity().getSharedPreferences("user_settings", MODE_PRIVATE);
-        ;
+
         modeSw.setChecked(sp.getBoolean("no_picture_mode",false));
         final FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(-2,-2);
         lp.gravity = Gravity.BOTTOM|Gravity.CENTER;

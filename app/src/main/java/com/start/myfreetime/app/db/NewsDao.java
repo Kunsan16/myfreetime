@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.orhanobut.logger.Logger;
+import com.start.myfreetime.bean.Movie;
 import com.start.myfreetime.bean.Question;
 import com.start.myfreetime.bean.TopStoriesBean;
 import com.start.myfreetime.bean.ZhihuDailyStory;
@@ -78,7 +79,6 @@ public class NewsDao extends BaseDao {
 
                             }
                         });
-
         isExist=true;
 
         }catch (Exception e){
@@ -86,6 +86,35 @@ public class NewsDao extends BaseDao {
             realm.cancelTransaction();
         }
       return isExist;
+    }
+
+
+    /**
+     * 保存每条电影简介
+     */
+    public boolean addMovieContent(final String nm, final String star, final String content,String date){
+        boolean isExist=false;
+        try{
+            //在数据库中创建一个对象，主键默认0
+            final Movie movie=new Movie();
+            movie.setTitle(nm);
+            movie.setStar(star);
+            movie.setContent(content);
+            movie.setDate(date);
+            realm.executeTransaction(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+                    realm.copyToRealmOrUpdate(movie);
+
+                }
+            });
+            isExist=true;
+
+        }catch (Exception e){
+            e.printStackTrace();
+            realm.cancelTransaction();
+        }
+        return isExist;
     }
 
     /**

@@ -19,4 +19,7 @@
     <string name="clear_cache">清除缓存</string>
     <string name="read_note">浏览记录</string>
     <string name="tv_about">关于</string>
+    <string name="movie_content">电影简介</string>
+    <string name="movie_comment">热门评论</string>
+    <string name="round_cinemal">周边影院</string>
 </resources>

@@ -3,12 +3,14 @@ package com.start.myfreetime.app;
 import android.Manifest;
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 
+import com.squareup.leakcanary.LeakCanary;
 import com.tbruyelle.rxpermissions.RxPermissions;
 import com.umeng.message.IUmengRegisterCallback;
 import com.umeng.message.PushAgent;
@@ -28,8 +30,14 @@ public class MyApplication extends Application {
 
     public static Application instance;
 
+    private static Context context;
+
     public static Application getInstance() {
         return instance;
+    }
+
+    public static Context getContext(){
+        return context;
     }
 
 
@@ -40,7 +48,13 @@ public class MyApplication extends Application {
         RealmConfiguration config = new RealmConfiguration.Builder().build();
         Realm.setDefaultConfiguration(config);
         instance = this;
-
+        context=getApplicationContext();
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            // This process is dedicated to LeakCanary for heap analysis.
+            // You should not init your app in this process.
+            return;
+        }
+        LeakCanary.install(this);
 
         PushAgent mPushAgent = PushAgent.getInstance(this);
         //注册推送服务，每次调用register方法都会回调该接口

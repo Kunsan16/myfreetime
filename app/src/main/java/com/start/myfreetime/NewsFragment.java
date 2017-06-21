@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -143,6 +144,20 @@ public class NewsFragment extends BaseFragment<NewsPresenter> implements NewsVie
                 }
             });
         }
+        final View view_footer = LayoutInflater.from(mContext).inflate(R.layout.view_more, null);
+
+            adapter.addFooter(new RecyclerArrayAdapter.ItemView() {
+                @Override
+                public View onCreateView(ViewGroup parent) {
+                    return view_footer;
+                }
+
+                @Override
+                public void onBindView(View headerView) {
+
+                }
+            });
+
     }
     @Override
     public void showLoading() {
@@ -159,6 +174,7 @@ public class NewsFragment extends BaseFragment<NewsPresenter> implements NewsVie
     public void showResult(final List<Question> list) {
 
             adapter.addAll(list);
+            list.clear();//可能是EasyRec的封装原因，之前的list还会再显示一遍，这里显示完clear
             adapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(int position) {
@@ -189,33 +205,52 @@ public class NewsFragment extends BaseFragment<NewsPresenter> implements NewsVie
         itemDecoration.setPaddingStart(true);
 
         recyclerView.addItemDecoration(itemDecoration);
-        adapter.setMore(R.layout.view_more, new RecyclerArrayAdapter.OnMoreListener() {
+
+        recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            boolean isSlidingToLast = false;
             @Override
-            public void onMoreShow() {
-                Calendar c = Calendar.getInstance();
-                c.set(mYear, mMonth, --mDay);
-                mPresenter.loadMore(c.getTimeInMillis());
-            }
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                LinearLayoutManager manager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    // 获取最后一个完全显示的item position
+                    int lastVisibleItem = manager.findLastCompletelyVisibleItemPosition();
+                    int totalItemCount = manager.getItemCount();
 
-            @Override
-            public void onMoreClick() {
+                    // 判断是否滚动到底部并且是向下滑动
+                    if (lastVisibleItem == (totalItemCount - 1) && isSlidingToLast) {
+                        final Calendar c = Calendar.getInstance();
+                        c.set(mYear, mMonth, --mDay);
+                        Log.d("加载更多","初始化就加载？");
 
-            }
-        });
+                               mPresenter.loadMore(c.getTimeInMillis());
 
-        recyclerView.setRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                recyclerView.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-
-                      mPresenter.refresh();
 
                     }
-                }, 1000);
+                }
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                isSlidingToLast = dy > 0;
+                super.onScrolled(recyclerView, dx, dy);
+
             }
         });
+//        adapter.setMore(R.layout.view_more, new RecyclerArrayAdapter.OnMoreListener() {
+//            @Override
+//            public void onMoreShow() {
+//
+//            }
+//
+//            @Override
+//            public void onMoreClick() {
+//
+//            }
+//        });
+
 
     }
+
+
 }

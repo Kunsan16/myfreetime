@@ -25,7 +25,7 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/app_bar_height"
+        android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay">
 
@@ -34,86 +34,30 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            app:layout_scrollFlags="scroll|enterAlwaysCollapsed|enterAlways">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
        <fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
                 android:id="@+id/video"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+              app:layout_collapseMode="parallax" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            app:tabIndicatorColor="#666666"
+            app:tabSelectedTextColor="#4D4D4D"
+            android:layout_height="?attr/actionBarSize"
 
+            app:tabTextColor="#A7A7A7" />
     </android.support.design.widget.AppBarLayout>
-    <android.support.v4.widget.NestedScrollView
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/scrollView"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:scrollbars="vertical"
-        android:scrollbarFadeDuration="1"
-        android:fadeScrollbars="true">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/tv_movie_nm" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/tv_movie_actor" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/tv_movie_date" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/tv_movie_dra" />
 
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:id="@+id/view"
-            android:layout_marginTop="66px"
-            android:background="@color/colorPrimary"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/pay_style_tv"
-            android:layout_marginTop="50px"
-            android:text="观众评论"
-            android:paddingLeft="16px"
-            android:paddingRight="16px"
-            android:textSize="30px"
-            android:background="@color/viewBackground"
-             />
-        </RelativeLayout>
-
-        <com.jude.easyrecyclerview.EasyRecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:id="@+id/ctx_recyclerview"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            >
-
-        </com.jude.easyrecyclerview.EasyRecyclerView>
-    </LinearLayout>
-
-
-    </android.support.v4.widget.NestedScrollView>
 
     </android.support.design.widget.CoordinatorLayout>
 
