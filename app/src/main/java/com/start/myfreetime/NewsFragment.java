@@ -23,6 +23,7 @@ import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.SpaceDecoration;
 import com.orhanobut.logger.Logger;
 import com.start.myfreetime.adapter.NewsAdapter;
+import com.start.myfreetime.app.Constant;
 import com.start.myfreetime.base.BaseFragment;
 import com.start.myfreetime.bean.Question;
 import com.start.myfreetime.bean.RealmBean;
@@ -178,8 +179,8 @@ public class NewsFragment extends BaseFragment<NewsPresenter> implements NewsVie
             adapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(int position) {
-
-                    mPresenter.startReading(position);
+                    Question question=adapter.getAllData().get(position);
+                    DetailActivity.launch(getActivity(),question.getId(),question.getTitle(), Constant.NEWS_TYPE);
 
                 }
             });

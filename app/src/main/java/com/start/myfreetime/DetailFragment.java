@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -84,7 +85,14 @@ public class DetailFragment extends Fragment implements DetailView {
         if (id == R.id.action_more) {
 
             final BottomSheetDialog dialog = new BottomSheetDialog(getActivity());
-            final View view = getActivity().getLayoutInflater().inflate(R.layout.reading_actions_sheet, null);
+            View view = View.inflate(getActivity(), R.layout.share_bottom_sheet, null);
+            dialog.setContentView(view);
+
+            CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) ((View) view.getParent())
+                    .getLayoutParams();
+            CoordinatorLayout.Behavior behavior = params.getBehavior();
+            ((View) view.getParent()).setBackgroundColor(getResources().getColor(android.R.color.transparent));
+
 
             if (presenterImp.queryIfIsBookmarked()) {
                 ((TextView) view.findViewById(R.id.textView)).setText(R.string.action_delete_from_bookmarks);
@@ -123,24 +131,10 @@ public class DetailFragment extends Fragment implements DetailView {
             });
 
             // copy the text content to clipboard
-            view.findViewById(R.id.layout_copy_text).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dialog.dismiss();
-                    presenterImp.copyText();
-                }
-            });
+
 
             // shareAsText the content as text
-            view.findViewById(R.id.layout_share_text).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dialog.dismiss();
-                    presenterImp.shareAsText();
-                }
-            });
 
-            dialog.setContentView(view);
             dialog.show();
         }
         return true;

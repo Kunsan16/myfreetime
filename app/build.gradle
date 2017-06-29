@@ -51,6 +51,8 @@ repositories {
         compile 'com.android.support:appcompat-v7:25.1.0'
         compile 'com.android.support:support-v4:25.1.0'
         compile 'com.android.support:design:25.1.0'
+        compile 'com.android.support:customtabs:25.1.0'
+        compile 'com.takisoft.fix:preference-v7:25.4.0.3'
         compile project(':PushSDK')
         testCompile 'junit:junit:4.12'
         //依赖添加

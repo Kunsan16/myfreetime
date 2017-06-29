@@ -52,6 +52,12 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"/>
 
+        <activity
+            android:name=".AboutPreferenceActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|screenLayout"
+
+            android:theme="@style/SettingsTheme" />
+
         <service android:name=".service.CacheService"/>
 
         <activity android:name=".wxapi.WXEntryActivity"

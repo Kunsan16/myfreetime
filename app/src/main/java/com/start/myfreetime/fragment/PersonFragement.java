@@ -1,5 +1,6 @@
 package com.start.myfreetime.fragment;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import com.jaeger.library.StatusBarUtil;
 import com.orhanobut.logger.Logger;
+import com.start.myfreetime.AboutPreferenceActivity;
 import com.start.myfreetime.MainActivity;
 import com.start.myfreetime.R;
 import com.start.myfreetime.base.BaseFragment;
@@ -93,7 +95,7 @@ public class PersonFragement extends BaseFragment<PersonSettingPresenter> implem
         return new PersonFragement();
     }
 
-    @OnClick({R.id.sw_nopic_mode,R.id.tv_clear_cache})
+    @OnClick({R.id.sw_nopic_mode,R.id.tv_clear_cache,R.id.tv_about_me})
     public void click(View view){
 
         switch (view.getId()){
@@ -105,7 +107,8 @@ public class PersonFragement extends BaseFragment<PersonSettingPresenter> implem
             case R.id.tv_clear_cache:
                 mPresenter.cleanGlideCache();
                 break;
-
+            case R.id.tv_about_me:
+           startActivity(new Intent(getActivity(), AboutPreferenceActivity.class));
 
         }
 

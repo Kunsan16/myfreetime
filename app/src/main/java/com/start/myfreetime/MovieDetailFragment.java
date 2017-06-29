@@ -47,8 +47,8 @@ import com.start.myfreetime.fragment.MovieCinemalFragment;
 import com.start.myfreetime.fragment.MovieCommentFragment;
 import com.start.myfreetime.fragment.MovieContentFragment;
 import com.start.myfreetime.fragment.MovieCopyFragment;
+
 import com.start.myfreetime.module.DaggerMovieDetailComponent;
-import com.start.myfreetime.module.DaggerNewsComponent;
 import com.start.myfreetime.module.MovieDetailComponent;
 import com.start.myfreetime.module.MovieDetailModule;
 import com.start.myfreetime.module.NewsComponent;

@@ -9,7 +9,8 @@
     <color name="lineColor">#d6d4d4</color>
 
     <color name="setting_bg">#f5f3f3</color>
-
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorTransparent">#00000000</color>
     <color name="newsColor">#029a9c</color>
     <color name="movieColor">#2e2b2b</color>
     <color name="remarkColor">#f17db5</color>

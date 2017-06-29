@@ -20,5 +20,11 @@ public class Constant {
 
     public static final String MOVIE_COMMENT="movie_comment";
 
+    public static final String NEWS_ID="id";
+
+    public static final String NEWS_TITLE="title";
+
+    public static final String NEWS_TYPE="zhihu";
+
 
 }

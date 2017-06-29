@@ -17,38 +17,43 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
-    app:behavior_hideable="true"
-    app:behavior_peekHeight="0dp"
+    android:layout_height="wrap_content"
+    android:paddingTop="18dp"
+    android:paddingBottom="18dp"
+    android:gravity="center"
     style="?attr/bottomSheetStyle"
+    android:layout_marginTop="130dp"
     android:id="@+id/reading_bottom_sheet"
+    android:layout_weight="3"
     android:background="@color/viewBackground">
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:gravity="center"
         android:id="@+id/layout_bookmark">
 
         <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:layout_gravity="center_vertical"
+            android:layout_gravity="center"
             android:src="@drawable/ic_collect"
             android:id="@+id/imageView"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="6dp"
-            android:layout_marginRight="16dp"
+
             android:text="@string/action_add_to_bookmarks"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:id="@+id/textView"
             android:textColor="@color/textColorPrimary"/>
 
@@ -56,106 +61,55 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_toRightOf="@+id/layout_bookmark"
         android:id="@+id/layout_copy_link">
 
         <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="center"
             android:src="@drawable/icon_wx_group"
            />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="6dp"
-            android:layout_marginRight="16dp"
+            android:gravity="center"
             android:text="@string/action_copy_link"
-            android:gravity="center_vertical"
+
             android:textColor="@color/textColorPrimary"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_toRightOf="@+id/layout_copy_link"
         android:id="@+id/layout_open_in_browser">
 
         <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="center"
             android:src="@drawable/icon_wx_logo"
            />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="6dp"
+            android:gravity="center"
 
             android:text="@string/action_open_in_browser"
-            android:gravity="center_vertical"
+
             android:textColor="@color/textColorPrimary"/>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:orientation="horizontal"
-        android:id="@+id/layout_copy_text">
 
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-
-            android:tint="@color/textColorPrimary"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:text="@string/action_copy_text"
-            android:gravity="center_vertical"
-            android:textColor="@color/textColorPrimary"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:orientation="horizontal"
-        android:id="@+id/layout_share_text">
-
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-
-            android:tint="@color/textColorPrimary"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:text="@string/action_share_as_text"
-            android:gravity="center_vertical"
-            android:textColor="@color/textColorPrimary"/>
-
-    </LinearLayout>
 
 </LinearLayout>

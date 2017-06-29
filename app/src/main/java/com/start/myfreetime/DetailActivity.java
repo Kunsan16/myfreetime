@@ -1,5 +1,6 @@
 package com.start.myfreetime;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -35,7 +36,14 @@ public class DetailActivity extends BaseActivity {
         StatusBarUtil.setColor(this, Color.TRANSPARENT);
     }
 
-
+    public static void launch(Context context, int newsId,String title,String type) {
+        Intent intent = new Intent(context, DetailActivity.class);
+        intent.putExtra(Constant.NEWS_ID, newsId);
+        intent.putExtra(Constant.NEWS_TITLE,title);
+        intent.putExtra(Constant.NEWS_TYPE,type);
+        context.startActivity(intent);
+        //  ((Activity)context).overridePendingTransition(R.anim.slide_right_entry, R.anim.hold);
+    }
 
     @Override
     protected int attachLayoutRes() {
@@ -44,7 +52,7 @@ public class DetailActivity extends BaseActivity {
 
     private void replaceFragment() {
         Intent intent=getIntent();
-        String ret=intent.getStringExtra("zhihu");
+        String ret=intent.getStringExtra(Constant.NEWS_TYPE);
 
         if ("zhihu".equals(ret)){
             zhihuFragment = new DetailFragment();
@@ -53,8 +61,8 @@ public class DetailActivity extends BaseActivity {
                     .commit();
 
             DetailPresenterImp presenterImp=new DetailPresenterImp(this,zhihuFragment);
-            presenterImp.setId(intent.getIntExtra("id",0));
-            presenterImp.setTitle(intent.getStringExtra("title"));
+            presenterImp.setId(intent.getIntExtra(Constant.NEWS_ID,0));
+            presenterImp.setTitle(intent.getStringExtra(Constant.NEWS_TITLE));
            // presenterImp.setCoverUrl(intent.getStringExtra("coverUrl"));
         }else {
             movieFragment = new MovieDetailFragment();
