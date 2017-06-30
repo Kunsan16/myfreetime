@@ -5,6 +5,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Looper;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.daimajia.slider.library.SliderLayout;
 import com.google.gson.Gson;
@@ -61,7 +64,8 @@ public class NewsFragment extends BaseFragment<NewsPresenter> implements NewsVie
     @BindView(R.id.recyclerView)
     EasyRecyclerView recyclerView;
     private SliderLayout mAdSlider;
-
+    @BindView(R.id.container)
+    CoordinatorLayout coordinatorLayout;
 
     private int mYear = Calendar.getInstance().get(Calendar.YEAR);
     private int mMonth = Calendar.getInstance().get(Calendar.MONTH);
@@ -92,9 +96,9 @@ public class NewsFragment extends BaseFragment<NewsPresenter> implements NewsVie
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if (hidden){
-            Log.i("hidden",hidden+"");
+
         }else {
-            Log.i("hidden no",hidden+"");
+
             MainActivity activity=(MainActivity)getActivity();
             activity.setToolbarVisible(false);
             StatusBarUtil.setColor(getActivity(),getResources().getColor(R.color.colorPrimary));
@@ -123,7 +127,15 @@ public class NewsFragment extends BaseFragment<NewsPresenter> implements NewsVie
 
     @Override
     public void showError() {
-         recyclerView.setEmptyView(R.layout.view_empty);
+
+        Snackbar.make(coordinatorLayout, R.string.loaded_failed,Snackbar.LENGTH_INDEFINITE)
+                .setAction(R.string.retry, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mPresenter.refresh();
+                    }
+                })
+                .show();
     }
 
     @Override
@@ -221,7 +233,7 @@ public class NewsFragment extends BaseFragment<NewsPresenter> implements NewsVie
                     if (lastVisibleItem == (totalItemCount - 1) && isSlidingToLast) {
                         final Calendar c = Calendar.getInstance();
                         c.set(mYear, mMonth, --mDay);
-                        Log.d("加载更多","初始化就加载？");
+
 
                                mPresenter.loadMore(c.getTimeInMillis());
 

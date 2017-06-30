@@ -53,6 +53,7 @@ public class NewsDao extends BaseDao {
 
     private Realm realm;
 
+
     public NewsDao(Realm realm) {
         super(realm);
         this.realm = realm;
@@ -76,7 +77,7 @@ public class NewsDao extends BaseDao {
                                             @Override
                             public void execute(Realm realm) {
                                realm.copyToRealmOrUpdate(question);
-
+            Logger.d("NewsDao","每条知乎日报插入到数据库");
                             }
                         });
         isExist=true;
@@ -84,6 +85,7 @@ public class NewsDao extends BaseDao {
         }catch (Exception e){
             e.printStackTrace();
             realm.cancelTransaction();
+            Logger.d("NewsDao","插入数据库异常");
         }
       return isExist;
     }

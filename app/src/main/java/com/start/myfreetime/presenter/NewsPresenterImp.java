@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.orhanobut.logger.Logger;
@@ -81,7 +82,6 @@ public class NewsPresenterImp implements NewsPresenter {
                     if (clearing) {
                         list.clear();
                     }
-                    Log.i("加载更多","list.size"+list.size());
                     for (int i = 0; i <post.getStories().size() ; i++) {
                         final Question question=new Question();
 
@@ -90,7 +90,6 @@ public class NewsPresenterImp implements NewsPresenter {
                         question.setImages(post.getStories().get(i).getImages().get(0));
 
                         list.add(question);
-                        Log.i("加载更多","list.add(question)"+list.size());
                         //添加到数据库
                         newsDao.addOneNews(question.getId(),question.getImages(),question.getTitle());
 
@@ -99,7 +98,7 @@ public class NewsPresenterImp implements NewsPresenter {
                         intent.putExtra("type", CacheService.TYPE_ZHIHU);
                         intent.putExtra("id", question.getId());
                         LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
-                 }  Log.i("加载更多","获取的list大小"+list.size());
+                 }
                     view.showResult(list);
                     view.stopLoading();
                 }
@@ -110,9 +109,15 @@ public class NewsPresenterImp implements NewsPresenter {
                 }
             });
         }else {
-            List<Question> questions_list = mRealm.where(Question.class).findAll();
-            view.showResult(questions_list);
-            list.addAll(questions_list);
+            if (clearing) {
+
+                list.clear();
+                List<Question> questions_list = mRealm.where(Question.class).findAll();
+                list.addAll(questions_list);
+                view.showResult(list);
+            }else {
+                view.showError();
+            }
         }
     }
 
@@ -158,13 +163,11 @@ public class NewsPresenterImp implements NewsPresenter {
 
     @Override
     public void refresh() {
-        Log.i("加载更多","refresh");
         loadPosts(Calendar.getInstance().getTimeInMillis(), true);
     }
 
     @Override
     public void loadMore(long date) {
-        Log.i("加载更多","loadMore");
         loadPosts(date, false);
     }
 
@@ -181,7 +184,7 @@ public class NewsPresenterImp implements NewsPresenter {
 
     @Override
     public void start() {
-        Log.i("加载更多","start");
+
         loadPosts(Calendar.getInstance().getTimeInMillis(), true);
         loadLaste(true);
     }
